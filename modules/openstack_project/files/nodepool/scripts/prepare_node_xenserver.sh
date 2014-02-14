@@ -25,8 +25,9 @@ sudo -u jenkins -i /opt/nodepool-scripts/prepare_devstack.sh $HOSTNAME
 
 # This is the extra step compared to prepare_node_devstack.sh
 # We shut down the hypervisor, to make sure, that all the filesystems are unmounted properly
-
-SSH_DOM0="sudo -u domzero ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.33.2"
-FEED_WITH_NOTHING="< /dev/null"
-
-$SSH_DOM0 halt -p $FEED_WITH_NOTHING
+sudo -u domzero \
+    ssh \
+        -o StrictHostKeyChecking=no \
+        -o UserKnownHostsFile=/dev/null \
+        root@192.168.33.2 \
+            halt -p </dev/null
