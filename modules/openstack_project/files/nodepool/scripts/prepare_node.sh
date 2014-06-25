@@ -47,10 +47,10 @@ sudo mv /tmp/image-hostname.txt /etc/image-hostname.txt
 if [ -f /usr/bin/yum ]; then
     sudo yum -y install wget
 fi
-wget https://git.openstack.org/cgit/openstack-infra/config/plain/install_puppet.sh
+wget https://raw.githubusercontent.com/citrix-openstack/config/master/install_puppet.sh
 sudo bash -xe install_puppet.sh
 
-sudo git clone --depth=1 $GIT_BASE/openstack-infra/config.git \
+sudo git clone http://github.com/citrix-openstack/config  \
     /root/config
 sudo /bin/bash /root/config/install_modules.sh
 
