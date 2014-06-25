@@ -21,9 +21,9 @@ SUDO=$2
 BARE=$3
 
 sudo hostname $HOSTNAME
-wget https://git.openstack.org/cgit/openstack-infra/config/plain/install_puppet.sh
+wget https://raw.githubusercontent.com/citrix-openstack/config/master/install_puppet.sh
 sudo bash -xe install_puppet.sh
-sudo git clone https://review.openstack.org/p/openstack-infra/config.git \
+sudo git clone http://github.com/citrix-openstack/config \
     /root/config
 sudo /bin/bash /root/config/install_modules.sh
 if [ -z "$NODEPOOL_SSH_KEY" ] ; then
