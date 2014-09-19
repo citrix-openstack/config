@@ -167,8 +167,14 @@ EOF
     rm $puppet_deb
 
     apt-get update
+    set +e
     DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
         --assume-yes dist-upgrade
+    if [ $? != 0 ]; then
+        DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
+            --assume-yes dist-upgrade
+    fi
+    set +e
     DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
         --assume-yes install -y --force-yes puppet git $rubypkg
 }
