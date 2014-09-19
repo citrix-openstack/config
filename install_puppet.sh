@@ -171,10 +171,12 @@ EOF
     DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
         --assume-yes dist-upgrade
     if [ $? != 0 ]; then
+        set +e
         DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
             --assume-yes dist-upgrade
+    else
+        set +e
     fi
-    set +e
     DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
         --assume-yes install -y --force-yes puppet git $rubypkg
 }
