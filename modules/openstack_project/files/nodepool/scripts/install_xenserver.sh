@@ -19,5 +19,5 @@
 
 ./convert_node_to_xenserver.sh \
     password \
-    http://downloads.vmd.citrix.com/OpenStack/xenapi-in-the-cloud-appliances/1.0.1.xva \
+    http://downloads.vmd.citrix.com/OpenStack/xenapi-in-the-cloud-appliances/1.1.2.xva \
     devstack
