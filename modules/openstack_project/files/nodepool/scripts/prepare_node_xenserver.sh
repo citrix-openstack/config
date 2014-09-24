@@ -17,14 +17,9 @@
 # limitations under the License.
 
 HOSTNAME=$1
-SUDO='true'
-BARE='true'
 
-./prepare_node.sh "$HOSTNAME" "$SUDO" "$BARE"
-sudo -u jenkins -i /opt/nodepool-scripts/prepare_devstack.sh $HOSTNAME
+./prepare_node_devstack.sh "$HOSTNAME"
 
-# This is the extra step compared to prepare_node_devstack.sh
-# We shut down the hypervisor, to make sure, that all the filesystems are unmounted properly
 sudo -u domzero \
     ssh \
         -o StrictHostKeyChecking=no \
