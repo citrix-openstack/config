@@ -16,9 +16,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 HOSTNAME=$1
 
-./prepare_node_devstack.sh "$HOSTNAME"
+function tsfilter {
+    $@ 2>&1 | awk '
+    {
+        cmd ="date +\"%Y-%m-%d %H:%M:%S.%3N | \""
+        cmd | getline now
+        close("date +\"%Y-%m-%d %H:%M:%S.%3N | \"")
+        sub(/^/, now)
+        print
+        fflush()
+    }'
+}
+
+set -o pipefail
+tsfilter ./prepare_node_devstack.sh "$HOSTNAME"
 
 sudo -u domzero \
     ssh \
